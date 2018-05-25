@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: 
+  An example RESTful service
+Resources:
+  Producer:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main
+      CodeUri: ./producer.zip
+      Runtime: go1.x
+      Timeout: 30
+      Environment:
+        Variables:
+          AWS_ID: ASDF
+          AWS_TOKEN: FDSA
+      Events:
+        GetRates:
+          Type: Api
+          Properties:
+            Path: /produce
+            Method: post
